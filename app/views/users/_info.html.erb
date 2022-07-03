@@ -25,15 +25,14 @@
     <% end %>
   <% end %>
     <th>
-      <% unless @user.id == current_user.id %>    <!--現在ログインしているユーザーではない場合-->
+      <% unless user.id == current_user.id %>    <!--現在ログインしているユーザーではない場合-->
         <% if @is_room == true %>    <!--既にルームが作成されている場合は-->
-          <%= link_to "ダイレクトメッセージ", room_path(@room_id) %>    <!--そのチャットルームに遷移するボタンを表示-->
+          <%= link_to "chatを始める", room_path(@room_id) %>    <!--そのチャットルームに遷移するボタンを表示-->
         <% else %>
           <%= form_with model: @room, local: true do |f|%>    <!--roomsテーブルに情報を送信-->
             <%= fields_for @entry do |e| %>    <!--room_usersテーブルに情報を送信-->
-              <%= e.hidden_field :user_id, value: @user.id %>  <!--room_usersテーブルにuser_idを含める-->
+              <%= e.hidden_field :user_id, value: user.id %>  <!--room_usersテーブルにuser_idを含める-->
             <% end %>
-            <%= f.submit "chatを始める" %>
           <% end %>
         <% end %>
       <% end %>
