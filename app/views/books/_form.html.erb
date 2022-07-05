@@ -8,10 +8,10 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <script>
-    $('#star').raty({
+    $('#evaluate_stars').raty({
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',
-      scoreName: 'book[evarustion]'
+      scoreName: 'book[evaluation]',
       half: false,
     });
   </script>
