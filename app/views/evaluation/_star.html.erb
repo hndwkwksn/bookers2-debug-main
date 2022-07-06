@@ -6,9 +6,8 @@ $(document).on('turbolinks:load', function() {
     size: 20,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    half: true,
+    half: false,
     readOnly: true,
-    score: <%= book.evaluation %>,
   });
 });
 </script>
