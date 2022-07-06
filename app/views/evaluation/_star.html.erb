@@ -1,11 +1,11 @@
-<div id="star-rate<%= comment.id%>"></div>
+<div id="star-rate<%= @book.id %>"></div>
 <script>
-  $('#star').raty({
+  $('#star<%= @book.id %>').raty({
     size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
     starOn    : '<%= asset_path('star-on.png') %>',
     half      : false,
     readOnly: true,
-    score: <%= comment.star %>,
+    score: <%= @book.evaluation %>,
   });
 </script>
