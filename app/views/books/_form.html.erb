@@ -7,19 +7,23 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
-  <div class="form-group row" id="star">
-    <%= f.label :evaluation,'総合評価', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :evaluation, id: :review_star %>
-  </div>
-  <script>
-    $('#star').raty({
-      size     : 36,
-      starOff  : '<%= asset_path('star-off.png') %>',
-      starOn   : '<%= asset_path('star-on.png') %>',
-      scoreName: 'book[evaluation]',
-      half: false,
-    });
-  </script>
+  <% if book.id === nil %>
+    <div class="form-group row" id="star">
+      <%= f.label :evaluation,'総合評価', class:'col-md-3 col-form-label' %>
+      <%= f.hidden_field :evaluation, id: :star %>
+    </div>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff  : '<%= asset_path('star-off.png') %>',
+        starOn   : '<%= asset_path('star-on.png') %>',
+        scoreName: 'book[evaluation]',
+        half: false,
+      });
+    </script>
+  <% else %>
+    <%= render "evaluation/star", book: book %>
+  <% end %>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
