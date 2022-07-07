@@ -16,14 +16,13 @@ class BooksController < ApplicationController
     elsif params[:star_count]
       @books = Book.all.order(evaluation: :desc)
     else
-      @books = Book.all
+      to  = Time.current.at_end_of_day
+      from  = (to - 6.day).at_beginning_of_day
+      @books = Book.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
+      a.favorites.where(created_at: from...to).size
+      }
     end
-    # to  = Time.current.at_end_of_day
-    # from  = (to - 6.day).at_beginning_of_day
-    # @books = Book.all.sort {|a,b|
-    # b.favorites.where(created_at: from...to).size <=>
-    # a.favorites.where(created_at: from...to).size
-    # }
     @book = Book.new
   end
 
