@@ -12,6 +12,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.order(created_at: :desc)
+    @books = Book.all.order(evaluation: :desc)
     # to  = Time.current.at_end_of_day
     # from  = (to - 6.day).at_beginning_of_day
     # @books = Book.all.sort {|a,b|
