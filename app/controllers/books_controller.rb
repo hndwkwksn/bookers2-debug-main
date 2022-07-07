@@ -11,8 +11,13 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all.order(created_at: :desc)
-    @books = Book.all.order(evaluation: :desc)
+    if params[:latest]
+      @books = Book.all.order(created_at: :desc)
+    elsif params[:star_count]
+      @books = Book.all.order(evaluation: :desc)
+    else
+      @books = Book.all
+    end
     # to  = Time.current.at_end_of_day
     # from  = (to - 6.day).at_beginning_of_day
     # @books = Book.all.sort {|a,b|
