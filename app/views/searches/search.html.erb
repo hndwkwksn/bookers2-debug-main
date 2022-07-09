@@ -1,17 +1,8 @@
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
-    <h3>Users search for "<%= @word %>"</h3>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-    <h3>Books search for "<%= @word %>"</h3>
-    <%= render 'books/index', books: @records %>
-  <% end %>
-</table>
+<% if @model == 'user' %>
+	<h3>Users search for "<%= @content %>"</h3>
+  <%= render 'users/index', users: @records %>
+<% elsif @model == 'book' || @model == 'tag' %>
+	<h3>Books search for "<%= @content %>"</h3>
+  <%= render 'books/index', books: @records %>
+<% end %>
+
