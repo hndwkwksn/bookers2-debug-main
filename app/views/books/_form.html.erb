@@ -12,9 +12,9 @@
     <%= f.text_field :tag_name, class: 'form-control book_tag_name' %>
   </div>
   <% if book.id === nil %>
-    <div class="form-group row" id="star">
-      <%= f.label :evaluation,'総合評価', class:'col-md-3 col-form-label' %>
-      <%= f.hidden_field :evaluation, id: :star %>
+    <div class="form-group" id="star">
+      <%= f.label "総合評価" %>
+      <%= f.hidden_field :evaluation, id: :star, class:'form-control' %>
     </div>
     <script>
       $('#star').raty({
