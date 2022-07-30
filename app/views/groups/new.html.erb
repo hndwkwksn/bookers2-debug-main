@@ -1,2 +1,13 @@
-<h1>Groups#new</h1>
-<p>Find me in app/views/groups/new.html.erb</p>
+<h1>Create Group</h1>
+<%= form_with model: @group, url: groups_path do |f| %>
+  <%= f.label :グループ名 %>
+  <%= f.text_field :name %>
+
+  <%= f.label :紹介文 %>
+  <%= f.text_field :introduction %>
+
+  <%= f.label :グループ画像 %>
+  <%= f.file_field :image %>
+
+  <%= f.submit %>
+<% end %>
