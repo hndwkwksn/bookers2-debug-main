@@ -1,13 +1,9 @@
-<h1>Create Group</h1>
-<%= form_with model: @group, url: groups_path do |f| %>
-  <%= f.label :グループ名 %>
-  <%= f.text_field :name %>
-
-  <%= f.label :紹介文 %>
-  <%= f.text_field :introduction %>
-
-  <%= f.label :グループ画像 %>
-  <%= f.file_field :image %>
-
-  <%= f.submit %>
-<% end %>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Create Group</h1>
+      <%= render 'layouts/errors', obj: @group %>
+      <%= render 'form', group: @group %>
+    </div>
+  </div>
+</div>
