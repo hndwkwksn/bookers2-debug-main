@@ -13,8 +13,10 @@
   <body>
     <%= render 'layouts/header' %>
     <p id="notice"><%= notice %></p>
-    <%= render 'searches/form' %>
-    <%= render "searches/tag_form" %>
+    <div class="search" >
+      <%= render 'searches/form' %>
+      <%= render "searches/tag_form" %>
+    </div>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

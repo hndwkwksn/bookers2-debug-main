@@ -1,0 +1,7 @@
+.search {
+  width: 100%;
+  height: auto;
+  border-color: red;
+  display: flex;
+  justify-content: center;
+}
