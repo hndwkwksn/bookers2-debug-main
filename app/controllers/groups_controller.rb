@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
-    @group.users << current_user
+    @group.users << current_user # @group.usersに、current_userを追加している。
     if @group.save
       redirect_to groups_path
     else
@@ -18,10 +18,12 @@ class GroupsController < ApplicationController
   end
 
   def index
+    @book = Book.new
     @groups = Group.all
   end
 
   def show
+    @book = Book.new
     @group = Group.find(params[:id])
   end
 
