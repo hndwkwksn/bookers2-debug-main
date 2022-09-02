@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update]
+
   def new
     @group = Group.new
   end
@@ -22,16 +25,14 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
-      if @group.update(group_params)
-        redirect_to groups_path
-      else
-        render "edit"
-      end
+    if @group.update(group_params)
+      redirect_to groups_path
+    else
+      render "edit"
+    end
   end
 
   private
