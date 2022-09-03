@@ -75,4 +75,17 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "7c2d7d4d83eb446ca8021b0eeb6947fd.vfs.cloud9.ap-northeast-1.amazonaws.com"
+
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    domain:               'gmail.com',
+    user_name:            '<EMAIL_ADDRESS>',#Gmailのアドレス
+    password:             '<EMAIL_PASSWORD>',#後述！大苦戦しました！
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
 end
