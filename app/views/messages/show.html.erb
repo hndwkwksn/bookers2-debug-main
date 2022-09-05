@@ -1,21 +1,29 @@
-<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8 m-auto">
+    <h1 class="text-center" id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
 
-<div class="message" style="width: 400px;">
-  <% @messages.each do |message| %>
-    <% if message.user_id == current_user.id %>
-      <p style="text-align: right;"><%= message.message %></p>
-    <% else %>
-      <p style="text-align: left;"><%= message.message %></p>
-    <% end %>
-  <% end %>
+    <div class="message m-auto" style="width: 400px;">
+      <% @messages.each do |message| %>
+        <% if message.user_id == current_user.id %>
+          <p style="text-align: right;"><%= message.message %></p>
+        <% else %>
+          <p style="text-align: left;"><%= message.message %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="errors m-auto">
+      <%= render "layouts/errors", obj: @message %>
+    </div>
+
+    <div class="text-center">
+      <%= form_with model: @message, data: {remote: true} do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送信" %>
+      <% end %>
+    </div>
+    </div>
+  </div>
 </div>
-
-<div class="errors">
-  <%= render "layouts/errors", obj: @message %>
-</div>
-
-<%= form_with model: @message, data: {remote: true} do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-  <%= f.submit "送信" %>
-<% end %>
