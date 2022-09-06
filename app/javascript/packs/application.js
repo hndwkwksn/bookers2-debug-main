@@ -12,8 +12,6 @@ import "popper.js"
 import "bootstrap"
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-require("chartkick")
-require("chart.js")
 
 Rails.start()
 Turbolinks.start()
@@ -21,3 +19,5 @@ ActiveStorage.start()
 require('jquery')
 window.$ = window.jQuery = require('jquery');
 require('packs/raty')
+require('chartkick')
+require('chart.js')
