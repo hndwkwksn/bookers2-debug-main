@@ -33,7 +33,8 @@
          </tr>
         </tbody>
        </table>
-       <table class="table  table-bordered">
+
+       <table class="table table-bordered">
         <thead>
         <tr>
          <th>今週の投稿</th>
@@ -54,6 +55,31 @@
            </tr>
          </tbody>
         </table>
+
+        <table class="table table-bordered">
+        <thead>
+         <tr>
+          <th>６日前</th>
+          <th>5日前</th>
+          <th>4日前</th>
+          <th>3日前</th>
+          <th>２日前</th>
+          <th>昨日</th>
+          <th>今日</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <th><%= @books.created_6days.count %></th>
+          <th><%= @books.created_5days.count %></th>
+          <th><%= @books.created_4days.count %></th>
+          <th><%= @books.created_3days.count %></th>
+          <th><%= @books.created_2days.count %></th>
+          <th><%= @yesterday_book.count %></th>
+          <th><%= @today_book.count %></th>
+         </tr>
+        </tbody>
+       </table>
       </div>
     </div>
   </div>
