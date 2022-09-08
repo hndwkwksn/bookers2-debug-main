@@ -2,13 +2,13 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
+  has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: "Favorite"
   has_many :view_counts, dependent: :destroy
   has_many :book_tags, dependent: :destroy
   has_many :tags, through: :book_tags
 
-  validates :title,presence:true
-  validates :body,presence:true,length:{maximum:200}
+  validates :title, presence: true
+  validates :body, presence: true, length: { maximum: 200 }
 
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) } # 今日
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) } # 前日
@@ -32,26 +32,26 @@ class Book < ApplicationRecord
 
     # Destroy old taggings:
     old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_name)
+      self.tags.delete Tag.find_by(name: old_name)
     end
 
     # Create new taggings:
     new_tags.each do |new_name|
-      book_tag = Tag.find_or_create_by(name:new_name)
+      book_tag = Tag.find_or_create_by(name: new_name)
       self.tags << book_tag # 配列に保存
     end
   end
 
   # 検索方法分岐
   def self.search_for(content, method)
-    if method == 'perfect'
+    if method == "perfect"
       Book.where(title: content)
-    elsif method == 'forward'
-      Book.where('title LIKE ?', content+'%')
-    elsif method == 'backward'
-      Book.where('title LIKE ?', '%'+content)
+    elsif method == "forward"
+      Book.where("title LIKE ?", content + "%")
+    elsif method == "backward"
+      Book.where("title LIKE ?", "%" + content)
     else
-      @book = Book.where('title LIKE ?', '%'+content+'%')
+      @book = Book.where("title LIKE ?", "%" + content + "%")
     end
   end
 end

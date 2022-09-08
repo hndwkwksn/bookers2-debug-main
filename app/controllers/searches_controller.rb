@@ -6,11 +6,11 @@ class SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
 
-    if @model == 'user'
+    if @model == "user"
       @records = User.search_for(@content, @method)
-    elsif @model == 'book'
+    elsif @model == "book"
       @records = Book.search_for(@content, @method)
-    elsif @model == 'tag'
+    elsif @model == "tag"
       @records = Tag.search_books_for(@content, @method)
     end
   end

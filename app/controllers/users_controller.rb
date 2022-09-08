@@ -36,20 +36,19 @@ class UsersController < ApplicationController
       @search_book = "日付を選択してください"
     else
       create_at = params[:created_at]
-      @search_book = @books.where(['created_at LIKE ? ', "#{create_at}%"]).count
+      @search_book = @books.where(["created_at LIKE ? ", "#{create_at}%"]).count
     end
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
-  end
-
-  def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
+    def user_params
+      params.require(:user).permit(:name, :introduction, :profile_image)
     end
-  end
+
+    def ensure_correct_user
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to user_path(current_user)
+      end
+    end
 end

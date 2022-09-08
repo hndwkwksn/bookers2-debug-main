@@ -16,13 +16,13 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -81,16 +81,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # 一旦変数に入れておく
-  mail = ENV['MAIL_ADDRESS']
-  pass = ENV['MAIL_PASSWORD']
+  mail = ENV["MAIL_ADDRESS"]
+  pass = ENV["MAIL_PASSWORD"]
 
   config.action_mailer.smtp_settings = {
     port:                 587,
-    address:              'smtp.gmail.com',
-    domain:               'gmail.com',
+    address:              "smtp.gmail.com",
+    domain:               "gmail.com",
     user_name:            mail,
     password:             pass,
-    authentication:       'login',
+    authentication:       "login",
     enable_starttls_auto: true
   }
 end

@@ -24,15 +24,14 @@ class MessagesController < ApplicationController
   end
 
   private
-
     def message_params
       params.require(:message).permit(:message, :room_id)
     end
 
-  def reject_non_related
-    user = User.find(params[:id])
-    unless current_user.following?(user) && user.following?(current_user)
-      redirect_to books_path
+    def reject_non_related
+      user = User.find(params[:id])
+      unless current_user.following?(user) && user.following?(current_user)
+        redirect_to books_path
+      end
     end
-  end
 end

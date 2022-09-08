@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to groups_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    #current_userは、@group.usersから消されるという記述。
+    # current_userは、@group.usersから消されるという記述。
     @group.users.delete(current_user)
     redirect_to groups_path
   end
@@ -60,19 +60,18 @@ class GroupsController < ApplicationController
     group_users = @group.users
     @mail_title = params[:mail_title]
     @mail_content = params[:mail_content]
-    ContactMailer.send_mail(@mail_title, @mail_content,group_users).deliver # gmailからアクセス拒否？
+    ContactMailer.send_mail(@mail_title, @mail_content, group_users).deliver # gmailからアクセス拒否？
   end
 
   private
-
-  def group_params
-    params.require(:group).permit(:image, :name, :introduction)
-  end
-
-  def ensure_correct_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
+    def group_params
+      params.require(:group).permit(:image, :name, :introduction)
     end
-  end
+
+    def ensure_correct_user
+      @group = Group.find(params[:id])
+      unless @group.owner_id == current_user.id
+        redirect_to groups_path
+      end
+    end
 end
